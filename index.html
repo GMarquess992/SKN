@@ -1,0 +1,2749 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shekinah Assessoria Contábil</title>
+    <!-- Fontes premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Nova paleta de cores sofisticada */
+            --primary-dark: #1A2942;
+            --primary: #2D4264;
+            --secondary: #C9AD6A;
+            --accent: #556683;
+            --dark: #262A33;
+            --light: #F5F5F5;
+            --grey-light: #e0e0e0;
+            --grey-mid: #a0aec0;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lora', serif;
+            margin: 0;
+            padding: 0;
+            color: var(--light);
+            background-color: var(--dark);
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.3;
+            font-weight: 600;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        /* Header estilizado */
+        .header {
+            background-color: rgba(26, 41, 66, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+            transition: var(--transition);
+        }
+        
+        .header.scrolled {
+            padding: 5px 0;
+            background-color: rgba(26, 41, 66, 0.98);
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+        }
+        
+        .logo img {
+            height: 60px;
+            width: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .menu {
+            display: flex;
+            list-style: none;
+            margin-left: auto;
+        }
+        
+        .menu li {
+            margin-left: 35px;
+            position: relative;
+        }
+        
+        .menu li a {
+            color: var(--grey-mid);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .menu li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            left: 0;
+            bottom: 0;
+            transition: var(--transition);
+        }
+        
+        .menu li a:hover {
+            color: var(--light);
+        }
+        
+        .menu li a:hover:after {
+            width: 100%;
+        }
+        
+        /* Seção Hero aprimorada - Modificada para ocupar a tela inteira */
+        .hero {
+            background: linear-gradient(rgba(26, 41, 66, 0.8), rgba(26, 41, 66, 0.9)), 
+                url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') 
+                no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            min-height: 100vh; /* Altura mínima de 100% da viewport */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0; /* Removido o padding que causava scroll */
+        }
+        
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            letter-spacing: 1px;
+            animation: fadeInDown 1.2s ease-out;
+        }
+        
+        .hero h1 .gradient-text {
+            background: linear-gradient(to right, #C9AD6A, #E5D3A3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 60px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1.2s ease-out;
+            line-height: 1.7;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 36px;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--dark);
+            border: none;
+            box-shadow: 0 4px 15px rgba(201, 173, 106, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-color: #d8c089;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(201, 173, 106, 0.4);
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Estilos para o Header com menu centralizado */
+        .header {
+            background-color: rgba(26, 41, 66, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 0;
+            transition: var(--transition);
+        }
+        
+        .header.scrolled {
+            padding: 5px 0;
+            background-color: rgba(26, 41, 66, 0.98);
+        }
+        
+        .nav {
+            display: flex;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .logo {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .logo img {
+            height: 60px;
+            width: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .menu {
+            display: flex;
+            list-style: none;
+            margin: 0 auto;
+            padding: 0;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .menu li {
+            margin: 0 15px;
+            position: relative;
+        }
+        
+        .menu li a {
+            color: var(--grey-mid);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            padding: 5px 0;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .menu li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            left: 0;
+            bottom: 0;
+            transition: var(--transition);
+        }
+        
+        .menu li a:hover {
+            color: var(--light);
+        }
+        
+        .menu li a:hover:after {
+            width: 100%;
+        }
+        
+        /* Responsividade do header */
+        @media (max-width: 992px) {
+            .nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo {
+                position: relative;
+                left: auto;
+                top: auto;
+                transform: none;
+                margin-bottom: 15px;
+            }
+            
+            .menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .menu li {
+                margin: 5px 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo img {
+                height: 50px;
+            }
+            
+            .menu li {
+                margin: 5px 8px;
+            }
+            
+            .menu li a {
+                font-size: 14px;
+            }
+        }
+
+        /* Estilo para Seção Perfil */
+        .section {
+            padding: 120px 0;
+            background-color: var(--dark);
+            color: var(--light);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        
+        .section-subtitle {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            color: var(--secondary);
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--light);
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .separator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .separator-line {
+            height: 1px;
+            flex-grow: 1;
+            background-color: rgba(201, 173, 106, 0.3);
+        }
+        
+        .separator-icon {
+            padding: 0 15px;
+            color: var(--secondary);
+        }
+        
+        .profile-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .founders-photos {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .founder-photo-wrapper {
+            text-align: center;
+        }
+        
+        .founder-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(135deg, var(--secondary), rgba(201, 173, 106, 0.2));
+            margin: 0 auto 15px;
+            transition: var(--transition);
+        }
+        
+        .founder-photo:hover {
+            transform: scale(1.05);
+        }
+        
+        .founder-photo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--dark);
+        }
+        
+        .founder-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--light);
+            margin-top: 10px;
+        }
+        
+        .profile-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: var(--grey-light);
+        }
+        
+        .value-card {
+            background-color: rgba(45, 66, 100, 0.3);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: var(--transition);
+            border: 1px solid rgba(201, 173, 106, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            border-color: rgba(201, 173, 106, 0.3);
+            background-color: rgba(45, 66, 100, 0.5);
+        }
+        
+        .value-icon {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .value-card h3 {
+            font-size: 1.5rem;
+            color: var(--light);
+            margin-bottom: 15px;
+        }
+        
+        .value-card p {
+            color: var(--grey-light);
+            line-height: 1.8;
+        }
+        
+        @media (max-width: 992px) {
+            .profile-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .founders-photos {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+        }
+
+        /* Whatsapp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .whatsapp-float:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header com design refinado e menu centralizado -->
+<div class="header">
+    <div class="container">
+        <div class="nav">
+            <!-- Logo da empresa -->
+            <div class="logo">
+                <img src="Logo PNG.png" alt="Shekinah Assessoria Contábil">
+            </div>
+            
+            <!-- Menu de navegação centralizado -->
+            <ul class="menu">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#perfil">Sobre</a></li>
+                <li><a href="#como-funciona">Metodologia</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#clientes">Depoimentos</a></li>
+                <li><a href="https://wa.me/5511959415902?text=Olá,%20%0A%0AGostaria%20de%20saber%20mais%20sobre%20os%20serviços%20de%20assessoria%20contábil.%0A%0APoderia%20me%20ajudar?" target="_blank">Contato</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Hero Section com design premium - Modificado para ocupar a tela inteira -->
+<div id="inicio" class="hero">
+    <div class="container">
+        <h1>
+            <span>Shekinah</span> 
+            <span class="gradient-text">Assessoria Contábil</span>
+        </h1>
+        
+        <p>
+            Transformamos desafios financeiros em <strong>oportunidades de crescimento</strong> com soluções contábeis personalizadas para o seu negócio.
+        </p>
+        
+        <a href="#servicos" class="btn btn-primary">
+            Conheça Nossos Serviços
+        </a>
+    </div>
+</div>
+
+<!-- Seção Perfil refinada -->
+<div id="perfil" class="section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-subtitle">Quem Somos</span>
+            <h2 class="section-title">Perfil da Empresa</h2>
+            <div class="separator">
+                <span class="separator-line"></span>
+                <span class="separator-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                        <line x1="12" y1="6" x2="12" y2="6.01"></line>
+                        <line x1="12" y1="10" x2="12" y2="10.01"></line>
+                        <line x1="12" y1="14" x2="12" y2="14.01"></line>
+                        <line x1="12" y1="18" x2="12" y2="18.01"></line>
+                    </svg>
+                </span>
+                <span class="separator-line"></span>
+            </div>
+        </div>
+        
+        <div class="profile-content">
+            <!-- Coluna esquerda: Fotos e texto introdutório -->
+            <div class="profile-left">
+                <!-- Fotos dos sócios com efeito de moldura -->
+                <div class="founders-photos">
+                    <div class="founder-photo-wrapper">
+                        <div class="founder-photo">
+                            <img src="Atilafoto.png" alt="Atila Patrick">
+                        </div>
+                        <p class="founder-name">Atila Patrick</p>
+                    </div>
+                    
+                    <div class="founder-photo-wrapper">
+                        <div class="founder-photo">
+                            <img src="Ricardofoto.png" alt="Ricardo">
+                        </div>
+                        <p class="founder-name">Ricardo Sousa</p>
+                    </div>
+                </div>
+                
+                <!-- Texto introdutório com tipografia refinada -->
+                <div class="profile-text">
+                    <p>
+                        O Escritório Shekinah nasceu em 2024 da união dos profissionais Atila Patrick, contador, e Ricardo Sousa, tributarista, motivados pelo propósito de somar talentos e experiências para oferecer um atendimento contábil realmente diferenciado. Acreditamos que a confiança é a base de qualquer relacionamento, por isso nossa missão vai além de prestar serviços: queremos ser parceiros estratégicos no crescimento de cada cliente. 
+                    </p>
+                    
+                    <p>
+                        Com atuação pautada pela excelência técnica, atendimento humanizado e soluções personalizadas, a Shekinah se dedica a simplificar a gestão contábil e tributária, para que os empresários possam focar no que realmente importa: o sucesso dos seus negócios. 
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Coluna direita: Missão, Visão, Valores com cards elegantes -->
+            <div class="profile-right">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3>Missão</h3>
+                    <p>Proporcionar soluções contábeis inovadoras que agregam valor real ao negócio de nossos clientes.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 16l4-4-4-4"></path>
+                            <path d="M8 12h8"></path>
+                        </svg>
+                    </div>
+                    <h3>Visão</h3>
+                    <p>Ser referência em assessoria contábil, reconhecida pela excelência técnica e atendimento personalizado.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path>
+                        </svg>
+                    </div>
+                    <h3>Valores</h3>
+                    <p>Ética, transparência, comprometimento, inovação e foco no crescimento do cliente.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Estilo para Seção Perfil */
+    .section {
+        padding: 120px 0;
+        background-color: var(--dark);
+        color: var(--light);
+    }
+    
+    .section-header {
+        text-align: center;
+        margin-bottom: 70px;
+    }
+    
+    .section-subtitle {
+        font-family: 'Lora', serif;
+        font-style: italic;
+        color: var(--secondary);
+        font-size: 1.2rem;
+        display: block;
+        margin-bottom: 15px;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+        color: var(--light);
+        margin-bottom: 25px;
+        position: relative;
+    }
+    
+    .separator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .separator-line {
+        height: 1px;
+        flex-grow: 1;
+        background-color: rgba(201, 173, 106, 0.3);
+    }
+    
+    .separator-icon {
+        padding: 0 15px;
+        color: var(--secondary);
+    }
+    
+    .profile-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+    
+    .founders-photos {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+    
+    .founder-photo-wrapper {
+        text-align: center;
+    }
+    
+    .founder-photo {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        padding: 5px;
+        background: linear-gradient(135deg, var(--secondary), rgba(201, 173, 106, 0.2));
+        margin: 0 auto 15px;
+        transition: var(--transition);
+    }
+    
+    .founder-photo:hover {
+        transform: scale(1.05);
+    }
+    
+    .founder-photo img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--dark);
+    }
+    
+    .founder-name {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        color: var(--light);
+        margin-top: 10px;
+    }
+    
+    .profile-text p {
+        margin-bottom: 20px;
+        line-height: 1.8;
+        color: var(--grey-light);
+    }
+    
+    .value-card {
+        background-color: rgba(45, 66, 100, 0.3);
+        border-radius: 8px;
+        padding: 30px;
+        margin-bottom: 25px;
+        transition: var(--transition);
+        border: 1px solid rgba(201, 173, 106, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .value-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        border-color: rgba(201, 173, 106, 0.3);
+        background-color: rgba(45, 66, 100, 0.5);
+    }
+    
+    .value-icon {
+        color: var(--secondary);
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+    
+    .value-card h3 {
+        font-size: 1.5rem;
+        color: var(--light);
+        margin-bottom: 15px;
+    }
+    
+    .value-card p {
+        color: var(--grey-light);
+        line-height: 1.8;
+    }
+    
+    @media (max-width: 992px) {
+        .profile-content {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .founders-photos {
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+    }
+</style>
+<!-- Seção Como Funciona refinada -->
+<div id="como-funciona" class="section section-methodology">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-subtitle">Nossa Abordagem</span>
+            <h2 class="section-title">Como Trabalhamos</h2>
+            <div class="separator">
+                <span class="separator-line"></span>
+                <span class="separator-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                    </svg>
+                </span>
+                <span class="separator-line"></span>
+            </div>
+        </div>
+        
+        <div class="methodology-content">
+            <!-- Processo passo a passo com efeitos refinados -->
+            <div class="step-card" data-step="01">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h3>Diagnóstico</h3>
+                    <p>Analisamos detalhadamente a situação contábil e fiscal da sua empresa para identificar oportunidades de otimização e redução de custos.</p>
+                    <div class="step-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-card" data-step="02">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h3>Planejamento</h3>
+                    <p>Criamos um plano personalizado com estratégias contábeis e fiscais alinhadas com seus objetivos de negócio e visão de longo prazo.</p>
+                    <div class="step-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-card" data-step="03">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h3>Implementação</h3>
+                    <p>Colocamos o plano em ação com acompanhamento constante para maximizar resultados e garantir conformidade com a legislação vigente.</p>
+                    <div class="step-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 20v-6M6 20V10M18 20V4"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-card" data-step="04">
+                <div class="step-number">04</div>
+                <div class="step-content">
+                    <h3>Monitoramento</h3>
+                    <p>Realizamos avaliações periódicas para garantir que sua estratégia contábil continue alinhada com seus objetivos em evolução e mudanças no cenário fiscal.</p>
+                    <div class="step-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Estilos para a seção Como Funciona */
+    .section-methodology {
+        background-color: var(--primary-dark);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .section-methodology:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 10% 20%, rgba(201, 173, 106, 0.03) 0%, transparent 70%);
+    }
+    
+    .methodology-content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .step-card {
+        background-color: rgba(38, 42, 51, 0.6);
+        border-radius: 8px;
+        padding: 35px;
+        position: relative;
+        transition: var(--transition);
+        border: 1px solid rgba(201, 173, 106, 0.05);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .step-card:before {
+        content: attr(data-step);
+        position: absolute;
+        top: -20px;
+        right: -15px;
+        font-size: 120px;
+        font-weight: 700;
+        color: rgba(201, 173, 106, 0.04);
+        font-family: 'Montserrat', sans-serif;
+        line-height: 1;
+        transition: var(--transition);
+    }
+    
+    .step-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        border-color: rgba(201, 173, 106, 0.2);
+        background-color: rgba(45, 66, 100, 0.3);
+    }
+    
+    .step-card:hover:before {
+        color: rgba(201, 173, 106, 0.07);
+    }
+    
+    .step-number {
+        color: var(--secondary);
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    
+    .step-content {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .step-card h3 {
+        font-size: 1.5rem;
+        color: var(--light);
+        margin-bottom: 15px;
+    }
+    
+    .step-card p {
+        color: var(--grey-mid);
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+    
+    .step-icon {
+        color: var(--secondary);
+        opacity: 0.8;
+        transition: var(--transition);
+    }
+    
+    .step-card:hover .step-icon {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    
+    @media (max-width: 992px) {
+        .methodology-content {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+    }
+</style>
+
+<script>
+    // Script para animações das etapas
+    document.addEventListener('DOMContentLoaded', function() {
+        const stepCards = document.querySelectorAll('.step-card');
+        
+        // Adicionar classes para animação de entrada
+        stepCards.forEach((card, index) => {
+            card.classList.add('step-animate');
+            card.style.animationDelay = `${index * 0.2}s`;
+            
+            // Interações ao passar o mouse
+            card.addEventListener('mouseenter', () => {
+                stepCards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        otherCard.style.opacity = '0.7';
+                        otherCard.style.transform = 'scale(0.98)';
+                    }
+                });
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                stepCards.forEach(otherCard => {
+                    otherCard.style.opacity = '1';
+                    otherCard.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+        
+        // Animação de scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('step-visible');
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        stepCards.forEach(card => {
+            observer.observe(card);
+        });
+    });
+</script>
+
+<style>
+    /* Animações para os cards de etapas */
+    .step-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: stepFadeIn 0.8s forwards;
+        animation-delay: 0.2s;
+    }
+    
+    @keyframes stepFadeIn {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .step-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
+<!-- Seção Serviços refinada com expansão de detalhes -->
+<div id="servicos" class="section section-services">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-subtitle">O Que Oferecemos</span>
+            <h2 class="section-title">Nossos Serviços</h2>
+            <div class="separator">
+                <span class="separator-line"></span>
+                <span class="separator-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                </span>
+                <span class="separator-line"></span>
+            </div>
+            <p class="section-description">
+                Oferecemos soluções contábeis completas e personalizadas para atender às necessidades específicas do seu negócio.
+            </p>
+        </div>
+        
+        <div class="services-grid">
+            <!-- Card de Serviço 1: Legalização -->
+            <div class="service-card" id="service-1">
+                <!-- Face frontal do card -->
+                <div class="service-front">
+                    <div class="service-image-wrapper">
+                        <img src="Legalização.png" alt="Legalização Empresarial" class="service-image">
+                        <div class="service-overlay"></div>
+                        <div class="service-number">01</div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Legalização Empresarial</h3>
+                        <p>Facilitamos todo o processo de abertura, alteração e encerramento de empresas, garantindo conformidade legal e eficiência.</p>
+                        <div class="service-features">
+                            <div class="service-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Abertura de empresas</span>
+                            </div>
+                            <div class="service-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Alterações contratuais</span>
+                            </div>
+                            <div class="service-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Regularização fiscal</span>
+                            </div>
+                        </div>
+                        <button class="service-link service-expand-btn" data-service="1">
+                            <span>Saiba mais</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Face posterior do card (detalhes expandidos) -->
+                <div class="service-back">
+                    <div class="service-back-content">
+                        <h3>Legalização Empresarial</h3>
+                        <p>Nossa equipe especializada em legalização empresarial oferece um serviço completo que simplifica todas as etapas burocráticas para empreendedores e empresários estabelecidos.</p>
+                        
+                        <h4>Como realizamos este serviço:</h4>
+                        <ul>
+                            <li><strong>Análise de viabilidade:</strong> Estudamos a melhor estrutura jurídica e regime tributário para seu negócio</li>
+                            <li><strong>Abertura de empresas:</strong> Cuidamos de toda documentação e registros nos órgãos competentes</li>
+                            <li><strong>Alterações contratuais:</strong> Realizamos modificações societárias, endereço, objeto social e capital</li>
+                            <li><strong>Licenças e alvarás:</strong> Obtemos todas as permissões necessárias para o funcionamento do seu negócio</li>
+                            <li><strong>Encerramento de empresas:</strong> Conduzimos o processo de baixa de forma segura e completa</li>
+                        </ul>
+                        
+                        <p>Trabalhamos com agilidade e precisão para garantir que sua empresa esteja sempre em conformidade com as exigências legais, minimizando riscos e otimizando o tempo do empresário.</p>
+                        
+                        <button class="service-back-btn" data-service="1">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="19" y1="12" x2="5" y2="12"></line>
+                                <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                            <span>Voltar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card de Serviço 2: Contabilidade -->
+            <div class="service-card" id="service-2">
+                <!-- Face frontal do card -->
+                <div class="service-front">
+                    <div class="service-image-wrapper">
+                        <img src="Contabilidade.png" alt="Contabilidade" class="service-image">
+                        <div class="service-overlay"></div>
+                        <div class="service-number">02</div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Contabilidade Completa</h3>
+                        <p>Gerenciamos toda sua contabilidade com precisão, garantindo relatórios claros e orientações estratégicas para decisões inteligentes.</p>
+                        <div class="service-features">
+                            <div class="service-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Escrituração contábil</span>
+                            </div>
+                            <div class="service-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Demonstrações financeiras</span>
+                            </div>
+                            <div class="service-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Análise de resultados</span>
+                            </div>
+                        </div>
+                        <button class="service-link service-expand-btn" data-service="2">
+                            <span>Saiba mais</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Face posterior do card (detalhes expandidos) -->
+                <div class="service-back">
+                    <div class="service-back-content">
+                        <h3>Contabilidade Completa</h3>
+                        <p>Nossa contabilidade vai além do registro básico de lançamentos, oferecendo análises estratégicas que apoiam o crescimento sustentável do seu negócio.</p>
+                        
+                        <h4>O que inclui nosso serviço:</h4>
+                        <ul>
+                            <li><strong>Escrituração contábil:</strong> Registro preciso de todas as operações financeiras</li>
+                            <li><strong>Conciliações bancárias:</strong> Verificação minuciosa entre extratos e registros contábeis</li>
+                            <li><strong>Demonstrações financeiras:</strong> Balanço patrimonial, DRE e fluxo de caixa com análises</li>
+                            <li><strong>Relatórios gerenciais:</strong> Documentos personalizados para tomada de decisão</li>
+                            <li><strong>Consultoria financeira:</strong> Orientações para otimização de recursos e crescimento</li>
+                        </ul>
+                        
+                        <p>Transformamos dados contábeis em informações claras e úteis para sua gestão, ajudando a identificar oportunidades de melhoria e garantindo o controle eficiente do patrimônio empresarial.</p>
+                        
+                        <button class="service-back-btn" data-service="2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="19" y1="12" x2="5" y2="12"></line>
+                                <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                            <span>Voltar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card de Serviço 3: Departamento Pessoal -->
+            <div class="service-card" id="service-3">
+                <!-- Face frontal do card -->
+                <div class="service-front">
+                    <div class="service-image-wrapper">
+                        <img src="Departamento Pessoal.png" alt="Departamento Pessoal" class="service-image">
+                        <div class="service-overlay"></div>
+                        <div class="service-number">03</div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Departamento Pessoal</h3>
+                        <p>Gerenciamos todos os processos relacionados aos colaboradores, desde a admissão até rescisões, com segurança e eficiência.</p>
+                        <div class="service-features">
+                            <div class="service-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Folha de pagamento</span>
+                            </div>
+                            <div class="service-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Admissão e demissão</span>
+                            </div>
+                            <div class="service-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Férias e 13º salário</span>
+                            </div>
+                        </div>
+                        <button class="service-link service-expand-btn" data-service="3">
+                            <span>Saiba mais</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Face posterior do card (detalhes expandidos) -->
+                <div class="service-back">
+                    <div class="service-back-content">
+                        <h3>Departamento Pessoal</h3>
+                        <p>Oferecemos um gerenciamento completo da área de recursos humanos, garantindo conformidade com a legislação trabalhista e processos eficientes para sua equipe.</p>
+                        
+                        <h4>Nossos serviços incluem:</h4>
+                        <ul>
+                            <li><strong>Processos admissionais:</strong> Registro, documentação e integração de novos colaboradores</li>
+                            <li><strong>Folha de pagamento:</strong> Cálculo preciso de salários, benefícios e encargos</li>
+                            <li><strong>Férias e 13º salário:</strong> Programação e processamento conforme necessidades da empresa</li>
+                            <li><strong>Obrigações acessórias:</strong> CAGED, RAIS, DIRF, SEFIP e outras obrigações legais</li>
+                            <li><strong>Processos demissionais:</strong> Cálculos rescisórios, documentação e homologações</li>
+                        </ul>
+                        
+                        <p>Mantemos sua empresa atualizada sobre mudanças na legislação trabalhista, minimizando riscos de passivos e proporcionando tranquilidade na gestão de pessoas.</p>
+                        
+                        <button class="service-back-btn" data-service="3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="19" y1="12" x2="5" y2="12"></line>
+                                <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                            <span>Voltar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card de Serviço 4: Fiscal -->
+            <div class="service-card" id="service-4">
+                <!-- Face frontal do card -->
+                <div class="service-front">
+                    <div class="service-image-wrapper">
+                        <img src="Fiscal.png" alt="Consultoria Fiscal" class="service-image">
+                        <div class="service-overlay"></div>
+                        <div class="service-number">04</div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Consultoria Fiscal</h3>
+                        <p>Oferecemos planejamento tributário estratégico para otimizar a carga fiscal da sua empresa e garantir conformidade legal.</p>
+                        <div class="service-features">
+                            <div class="service-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Planejamento tributário</span>
+                            </div>
+                            <div class="service-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Apuração de impostos</span>
+                            </div>
+                            <div class="service-feature">
+                                <span class="feature-icon">✓</span>
+                                <span>Declaração de IR</span>
+                            </div>
+                        </div>
+                        <button class="service-link service-expand-btn" data-service="4">
+                            <span>Saiba mais</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Face posterior do card (detalhes expandidos) -->
+                <div class="service-back">
+                    <div class="service-back-content">
+                        <h3>Consultoria Fiscal</h3>
+                        <p>Desenvolvemos estratégias tributárias personalizadas que proporcionam economia fiscal legítima e minimizam riscos com o fisco.</p>
+                        
+                        <h4>Como podemos ajudar:</h4>
+                        <ul>
+                            <li><strong>Planejamento tributário:</strong> Estruturação fiscal otimizada para seu modelo de negócio</li>
+                            <li><strong>Análise de enquadramento:</strong> Avaliação do melhor regime tributário para sua empresa</li>
+                            <li><strong>Apuração de impostos:</strong> Cálculo preciso de tributos federais, estaduais e municipais</li>
+                            <li><strong>Obrigações acessórias:</strong> SPED, EFD, GIA, DCTF e outras declarações fiscais</li>
+                            <li><strong>Declaração de IR:</strong> Elaboração de IR para pessoas físicas e jurídicas</li>
+                        </ul>
+                        
+                        <p>Nosso diferencial está em oferecer soluções fiscais que não apenas cumprem a legislação, mas também aproveitam oportunidades legais para redução da carga tributária, aumentando a competitividade do seu negócio.</p>
+                        
+                        <button class="service-back-btn" data-service="4">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="19" y1="12" x2="5" y2="12"></line>
+                                <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                            <span>Voltar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Estilos para a seção de Serviços com flip card */
+    .section-services {
+        background-color: var(--dark);
+    }
+    
+    .section-description {
+        max-width: 700px;
+        margin: 0 auto 60px;
+        text-align: center;
+        color: var(--grey-mid);
+        font-size: 1.1rem;
+    }
+    
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+    
+    .service-card {
+        position: relative;
+        height: 550px; /* Altura fixa para todos os cards */
+        perspective: 1500px;
+    }
+    
+    .service-front, 
+    .service-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        backface-visibility: hidden;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .service-front {
+        background-color: var(--primary-dark);
+        transform: rotateY(0deg);
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .service-back {
+        background-color: var(--primary-dark);
+        transform: rotateY(180deg);
+        border: 1px solid rgba(201, 173, 106, 0.2);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+    }
+    
+    .service-card.flipped .service-front {
+        transform: rotateY(-180deg);
+    }
+    
+    .service-card.flipped .service-back {
+        transform: rotateY(0deg);
+    }
+    
+    .service-image-wrapper {
+        position: relative;
+        height: 220px;
+        overflow: hidden;
+    }
+    
+    .service-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    
+    .service-card:hover .service-image {
+        transform: scale(1.1);
+    }
+    
+    .service-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(26, 41, 66, 0.2), rgba(26, 41, 66, 0.8));
+        transition: var(--transition);
+    }
+    
+    /* Remove a linha branca que aparece */
+    .service-image-wrapper::after {
+        display: none;
+    }
+    
+    .service-number {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: var(--secondary);
+        color: var(--dark);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        z-index: 2;
+        transition: var(--transition);
+    }
+    
+    .service-content {
+        padding: 30px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .service-card h3 {
+        font-size: 1.4rem;
+        color: var(--light);
+        margin-bottom: 15px;
+        position: relative;
+        padding-bottom: 15px;
+    }
+    
+    .service-card h3:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--secondary);
+        transition: var(--transition);
+    }
+    
+    .service-card:hover .service-front h3:after {
+        width: 60px;
+    }
+    
+    .service-card p {
+        color: var(--grey-mid);
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+    
+    .service-features {
+        margin: 20px 0;
+        flex-grow: 1;
+    }
+    
+    .service-feature {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    
+    .feature-icon {
+        color: var(--secondary);
+        margin-right: 10px;
+        font-weight: bold;
+    }
+    
+    .service-link {
+        display: flex;
+        align-items: center;
+        color: var(--secondary);
+        text-decoration: none;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-top: auto;
+        transition: var(--transition);
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+    
+    .service-link svg {
+        margin-left: 10px;
+        transition: var(--transition);
+    }
+    
+    .service-link:hover {
+        color: #d8c089;
+    }
+    
+    .service-link:hover svg {
+        transform: translateX(5px);
+    }
+    
+    /* Estilo para o conteúdo expandido */
+    .service-back-content {
+        height: 100%;
+        width: 100%;
+        padding: 20px;
+        overflow-y: auto;
+    }
+    
+    .service-back h3 {
+        font-size: 1.6rem;
+        color: var(--light);
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--secondary);
+    }
+    
+    .service-back h4 {
+        font-size: 1.2rem;
+        color: var(--secondary);
+        margin: 25px 0 15px;
+    }
+    
+    .service-back p {
+        color: var(--grey-light);
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+    
+    .service-back ul {
+        padding-left: 20px;
+        margin-bottom: 25px;
+    }
+    
+    .service-back li {
+        margin-bottom: 12px;
+        color: var(--grey-mid);
+        position: relative;
+        padding-left: 5px;
+    }
+    
+    .service-back li strong {
+        color: var(--light);
+    }
+    
+    .service-back-btn {
+        display: flex;
+        align-items: center;
+        color: var(--secondary);
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        background: none;
+        border: none;
+        padding: 10px 0;
+        cursor: pointer;
+        transition: var(--transition);
+        margin-top: 20px;
+    }
+    
+    .service-back-btn svg {
+        margin-right: 10px;
+        transition: var(--transition);
+    }
+    
+    .service-back-btn:hover {
+        color: #d8c089;
+    }
+    
+    .service-back-btn:hover svg {
+        transform: translateX(-5px);
+    }
+    
+    @media (max-width: 992px) {
+        .services-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+    }
+    /* Estilos para customizar a barra de rolagem */
+    .service-back-content {
+        height: 100%;
+        width: 100%;
+        padding: 20px;
+        overflow-y: auto;
+        
+        /* Firefox */
+        scrollbar-width: thin;
+        scrollbar-color: var(--secondary) rgba(26, 41, 66, 0.3);
+    }
+    
+    /* Chrome, Edge, Safari */
+    .service-back-content::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    .service-back-content::-webkit-scrollbar-track {
+        background: rgba(26, 41, 66, 0.3);
+        border-radius: 10px;
+    }
+    
+    .service-back-content::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, var(--secondary), rgba(201, 173, 106, 0.7));
+        border-radius: 10px;
+        border: none;
+    }
+    
+    .service-back-content::-webkit-scrollbar-thumb:hover {
+        background: var(--secondary);
+    }
+    
+    /* Para deixar o conteúdo mais agradável também */
+    .service-back {
+        background-color: var(--primary-dark);
+        transform: rotateY(180deg);
+        border: 1px solid rgba(201, 173, 106, 0.2);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0; /* Removido padding aqui para evitar duplo padding */
+        border-radius: 8px;
+    }
+    
+    .service-back-content {
+        padding: 35px; /* Aumentado padding do conteúdo para melhor espaçamento */
+    }
+    
+    /* Ajuste adicional para a transição ser mais suave */
+    .service-front, 
+    .service-back {
+        transition: transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .service-back h3 {
+        font-size: 1.6rem;
+        color: var(--light);
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        position: relative;
+    }
+    
+    .service-back h3:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 80px;
+        height: 2px;
+        background: linear-gradient(to right, var(--secondary), rgba(201, 173, 106, 0.3));
+    }
+    
+    /* Estiliza melhor o texto do conteúdo expandido */
+    .service-back-content ul {
+        padding-left: 5px;
+        list-style-type: none;
+    }
+    
+    .service-back-content li {
+        margin-bottom: 15px;
+        color: var(--grey-mid);
+        position: relative;
+        padding-left: 25px;
+    }
+    
+    .service-back-content li:before {
+        content: '•';
+        color: var(--secondary);
+        position: absolute;
+        left: 0;
+        font-size: 1.5rem;
+        line-height: 1;
+        opacity: 0.8;
+    }
+    
+    .service-back-content li strong {
+        color: var(--light);
+        font-weight: 600;
+        letter-spacing: 0.3px;
+    }
+
+</style>
+
+<script>
+    // Script para a interação dos cards de serviços
+    document.addEventListener('DOMContentLoaded', function() {
+        // Botões para expandir os cards
+        const expandButtons = document.querySelectorAll('.service-expand-btn');
+        
+        expandButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const serviceId = this.getAttribute('data-service');
+                const card = document.getElementById(`service-${serviceId}`);
+                card.classList.add('flipped');
+            });
+        });
+        
+        // Botões para voltar
+        const backButtons = document.querySelectorAll('.service-back-btn');
+        
+        backButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const serviceId = this.getAttribute('data-service');
+                const card = document.getElementById(`service-${serviceId}`);
+                card.classList.remove('flipped');
+            });
+        });
+    });
+</script>
+<!-- Seção de Depoimentos modernizada -->
+<div id="clientes" class="section section-testimonials">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-subtitle">Casos de Sucesso</span>
+            <h2 class="section-title">O Que Dizem Nossos Clientes</h2>
+            <div class="separator">
+                <span class="separator-line"></span>
+                <span class="separator-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </span>
+                <span class="separator-line"></span>
+            </div>
+        </div>
+        
+        <div class="testimonial-slider">
+            <div class="testimonial-track">
+                <!-- Depoimento 1 -->
+                <div class="testimonial-item" id="testimonial-0">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                            </svg>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"A assessoria contábil da Shekinah mudou completamente minha relação com as finanças da empresa. Agora tenho uma estratégia clara e vejo resultados reais mês após mês."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-photo">
+                                <img src="homem1.jpg" alt="Ricardo Oliveira">
+                            </div>
+                            <div class="author-info">
+                                <h4>Ricardo Oliveira</h4>
+                                <p>Empresário, 38 anos</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Depoimento 2 -->
+                <div class="testimonial-item" id="testimonial-1">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                            </svg>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"Depois que comecei o planejamento com a Shekinah, consegui reduzir minhas dívidas em 70% e comecei a investir mensalmente. O retorno do investimento foi imediato."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-photo">
+                                <img src="homem1.jpg" alt="João Victor">
+                            </div>
+                            <div class="author-info">
+                                <h4>João Victor</h4>
+                                <p>Desenvolvedor, 26 anos</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Depoimento 3 -->
+                <div class="testimonial-item" id="testimonial-2">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                            </svg>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"Finalmente entendi como organizar minhas finanças e agora consigo dormir tranquilo sabendo que meu dinheiro está trabalhando para mim de forma inteligente."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-photo">
+                                <img src="Atilafoto.png" alt="Atila Patrick">
+                            </div>
+                            <div class="author-info">
+                                <h4>Atila Patrick</h4>
+                                <p>Contador, 28 anos</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Depoimento 4 -->
+                <div class="testimonial-item" id="testimonial-3">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                            </svg>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"O planejamento mudou completamente minha relação com o dinheiro. Agora tenho metas claras e relatórios precisos que me ajudam a tomar decisões estratégicas."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-photo">
+                                <img src="homem1.jpg" alt="Pedro Henrique">
+                            </div>
+                            <div class="author-info">
+                                <h4>Pedro Henrique</h4>
+                                <p>Engenheiro, 32 anos</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Depoimento 5 -->
+                <div class="testimonial-item" id="testimonial-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                            </svg>
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"Em apenas 6 meses, consegui organizar minhas finanças e dar o primeiro passo para realizar meu sonho de abrir meu próprio negócio com segurança fiscal."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-photo">
+                                <img src="Mulher1.jpg" alt="Amanda Silva">
+                            </div>
+                            <div class="author-info">
+                                <h4>Amanda Silva</h4>
+                                <p>Empreendedora, 30 anos</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Controles do slider -->
+            <div class="testimonial-controls">
+                <button class="prev-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5"></path>
+                        <path d="M12 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                
+                <!-- Indicadores -->
+                <div class="testimonial-dots">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                    <span class="dot" data-index="3"></span>
+                    <span class="dot" data-index="4"></span>
+                </div>
+                
+                <button class="next-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Estilos para a seção de Depoimentos */
+    .section-testimonials {
+        background-color: var(--primary-dark);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .section-testimonials:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 90% 20%, rgba(201, 173, 106, 0.03) 0%, transparent 70%);
+    }
+    
+    .testimonial-slider {
+        position: relative;
+        padding: 30px 0;
+        margin: 0 auto;
+        max-width: 900px;
+    }
+    
+    .testimonial-track {
+        position: relative;
+        display: flex;
+        transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    
+    .testimonial-item {
+        width: 100%;
+        flex-shrink: 0;
+        padding: 0 20px;
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    
+    .testimonial-item.active {
+        opacity: 1;
+        transform: scale(1);
+    }
+    
+    .testimonial-card {
+        background-color: rgba(38, 42, 51, 0.6);
+        border-radius: 8px;
+        padding: 40px;
+        position: relative;
+        transition: var(--transition);
+        border: 1px solid rgba(201, 173, 106, 0.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        border-color: rgba(201, 173, 106, 0.2);
+    }
+    
+    .testimonial-quote-icon {
+        color: var(--secondary);
+        opacity: 0.4;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        transition: var(--transition);
+    }
+    
+    .testimonial-card:hover
+    .testimonial-card:hover .testimonial-quote-icon {
+        opacity: 0.6;
+        transform: translateY(-5px);
+    }
+    
+    .testimonial-content {
+        margin: 30px 0;
+        position: relative;
+        padding: 0 10px;
+    }
+    
+    .testimonial-content p {
+        font-family: 'Lora', serif;
+        font-style: italic;
+        font-size: 1.2rem;
+        line-height: 1.7;
+        color: var(--grey-light);
+    }
+    
+    .testimonial-author {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+    }
+    
+    .author-photo {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 15px;
+        border: 2px solid var(--secondary);
+        transition: var(--transition);
+    }
+    
+    .testimonial-card:hover .author-photo {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .author-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .author-info h4 {
+        font-size: 1.1rem;
+        color: var(--light);
+        margin-bottom: 5px;
+    }
+    
+    .author-info p {
+        font-size: 0.9rem;
+        color: var(--grey-mid);
+        margin: 0;
+    }
+    
+    .testimonial-rating {
+        margin-top: 20px;
+        color: var(--secondary);
+        font-size: 1.2rem;
+        letter-spacing: 3px;
+    }
+    
+    .testimonial-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 40px;
+    }
+    
+    .prev-button, .next-button {
+        background-color: rgba(201, 173, 106, 0.1);
+        color: var(--secondary);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid rgba(201, 173, 106, 0.2);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+    }
+    
+    .prev-button:hover, .next-button:hover {
+        background-color: rgba(201, 173, 106, 0.2);
+        transform: scale(1.1);
+    }
+    
+    .testimonial-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin: 0 20px;
+    }
+    
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(201, 173, 106, 0.2);
+        cursor: pointer;
+        transition: var(--transition);
+    }
+    
+    .dot.active {
+        background-color: var(--secondary);
+        transform: scale(1.2);
+    }
+</style>
+
+<script>
+    // Script para o slider de depoimentos
+    document.addEventListener('DOMContentLoaded', function() {
+        const testimonialItems = document.querySelectorAll('.testimonial-item');
+        const dots = document.querySelectorAll('.dot');
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        const testimonialTrack = document.querySelector('.testimonial-track');
+        
+        let currentIndex = 0;
+        
+        // Inicialize o slider
+        function initSlider() {
+            testimonialTrack.style.width = `${testimonialItems.length * 100}%`;
+            testimonialItems.forEach(item => {
+                item.style.width = `${100 / testimonialItems.length}%`;
+            });
+            showTestimonial(0);
+        }
+        
+        // Função para mostrar o depoimento atual
+        function showTestimonial(index) {
+            // Atualizar a posição do track
+            testimonialTrack.style.transform = `translateX(-${index * (100 / testimonialItems.length)}%)`;
+            
+            // Atualizar classes ativas
+            testimonialItems.forEach(item => item.classList.remove('active'));
+            testimonialItems[index].classList.add('active');
+            
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+            
+            // Atualizar o índice atual
+            currentIndex = index;
+        }
+        
+        // Navegar para o depoimento anterior
+        prevButton.addEventListener('click', () => {
+            const newIndex = (currentIndex - 1 + testimonialItems.length) % testimonialItems.length;
+            showTestimonial(newIndex);
+        });
+        
+        // Navegar para o próximo depoimento
+        nextButton.addEventListener('click', () => {
+            const newIndex = (currentIndex + 1) % testimonialItems.length;
+            showTestimonial(newIndex);
+        });
+        
+        // Adicionar event listeners aos pontos indicadores
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = parseInt(dot.getAttribute('data-index'));
+                showTestimonial(index);
+            });
+        });
+        
+        // Iniciar o slider
+        initSlider();
+        
+        // Rotação automática (opcional)
+        let autoRotate = setInterval(() => {
+            const newIndex = (currentIndex + 1) % testimonialItems.length;
+            showTestimonial(newIndex);
+        }, 8000);
+        
+        // Parar a rotação quando o mouse estiver sobre o slider
+        const slider = document.querySelector('.testimonial-slider');
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(autoRotate);
+        });
+        
+        // Reiniciar a rotação quando o mouse sair
+        slider.addEventListener('mouseleave', () => {
+            autoRotate = setInterval(() => {
+                const newIndex = (currentIndex + 1) % testimonialItems.length;
+                showTestimonial(newIndex);
+            }, 8000);
+        });
+    });
+</script>
+<!-- Seção de Contato e Rodapé elegante -->
+<div class="section section-contact">
+    <div class="container">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h2>Informações de Contato</h2>
+                <p class="contact-subtitle">Estamos à disposição para atendê-lo com excelência e personalização.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Endereço</h3>
+                            <p>Av. Paulista, 1636 - Bela Vista<br>São Paulo, SP, 01310-200</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
+                            </svg>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Telefone</h3>
+                            <p><a href="tel:+551195402-6767">(11) 95402-6767</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Email</h3>
+                            <p><a href="mailto:comercial@apcassessoriacontabil.com.br">comercial@apcassessoriacontabil.com.br</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                            </svg>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Redes Sociais</h3>
+                            <p><a href="https://linktr.ee/apcassessoriacontabil" target="_blank">linktr.ee/apcassessoriacontabil</a></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="map-wrapper">
+                <div class="map-overlay">
+                    <p>Clique para visualizar o mapa</p>
+                </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.3237519443774!2d-46.65718138538624!3d-23.558692167485697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c7f68b38d7%3A0x8c9b0c0b9d402ba4!2sAv.%20Paulista%2C%201636%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001310-200!5e0!3m2!1spt-BR!2sbr!4v1588785885065!5m2!1spt-BR!2sbr" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer elegante -->
+<footer class="footer">
+    <div class="container">
+        <!-- Parte Superior com Logo e Frase -->
+        <div class="footer-top">
+            <div class="footer-logo">
+                <img src="Logo PNG.png" alt="Shekinah Assessoria Contábil">
+            </div>
+            
+            <p class="footer-tagline">
+                Transformando desafios financeiros em conquistas para o seu negócio desde 2024.
+            </p>
+        </div>
+        
+        <!-- Separador -->
+        <div class="footer-separator"></div>
+        
+        <!-- Três Colunas -->
+        <div class="footer-columns">
+            <!-- Coluna Contato -->
+            <div class="footer-column">
+                <h3>Contato</h3>
+                <address>
+                    <div>Av. Paulista, 1636</div>
+                    <div>Bela Vista, São Paulo, SP</div>
+                    <div>01310-200</div>
+                    <div>Tel: (11) 95402-6767</div>
+                    <div>Email: <a href="mailto:comercial@apcassessoriacontabil.com.br">comercial@apcassessoriacontabil.com.br</a></div>
+                </address>
+            </div>
+            
+            <!-- Coluna Links Rápidos -->
+            <div class="footer-column">
+                <h3>Links Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#perfil">Sobre</a></li>
+                    <li><a href="#como-funciona">Metodologia</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#clientes">Depoimentos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+            
+            <!-- Coluna Serviços -->
+            <div class="footer-column">
+                <h3>Serviços</h3>
+                <ul class="footer-links">
+                    <li><a href="#servicos">Legalização Empresarial</a></li>
+                    <li><a href="#servicos">Contabilidade Completa</a></li>
+                    <li><a href="#servicos">Departamento Pessoal</a></li>
+                    <li><a href="#servicos">Consultoria Fiscal</a></li>
+                    <li><a href="#servicos">Declaração de IR</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Separador -->
+        <div class="footer-separator"></div>
+        
+        <!-- Copyright e Links de Política -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 Shekinah Assessoria Contábil. Todos os direitos reservados.</p>
+            <div class="footer-legal-links">
+                <a href="#">Termos de Uso</a>
+                <a href="#">Política de Privacidade</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Botão WhatsApp Flutuante -->
+<a href="https://wa.me/5511959415902?text=Olá,%20%0A%0AGostaria%20de%20saber%20mais%20sobre%20os%20serviços%20de%20assessoria%20contábil.%0A%0APoderia%20me%20ajudar?" class="whatsapp-float" target="_blank">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+    </svg>
+    <span>Fale Conosco</span>
+</a>
+
+<style>
+    /* Estilos para Seção de Contato */
+    .section-contact {
+        background-color: var(--dark);
+        padding-bottom: 60px;
+    }
+    
+    .contact-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+    
+    .contact-info {
+        padding: 30px;
+        background-color: var(--primary-dark);
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .contact-info h2 {
+        font-size: 2rem;
+        color: var(--light);
+        margin-bottom: 15px;
+        position: relative;
+        padding-bottom: 15px;
+    }
+    
+    .contact-info h2:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 2px;
+        background-color: var(--secondary);
+    }
+    
+    .contact-subtitle {
+        color: var(--grey-mid);
+        margin-bottom: 30px;
+        font-size: 1.1rem;
+    }
+    
+    .contact-details {
+        margin-top: 30px;
+    }
+    
+    .contact-item {
+        display: flex;
+        margin-bottom: 25px;
+    }
+    
+    .contact-icon {
+        color: var(--secondary);
+        margin-right: 20px;
+        flex-shrink: 0;
+    }
+    
+    .contact-text h3 {
+        font-size: 1.1rem;
+        color: var(--light);
+        margin-bottom: 5px;
+    }
+    
+    .contact-text p {
+        color: var(--grey-mid);
+        line-height: 1.6;
+    }
+    
+    .contact-text a {
+        color: var(--grey-mid);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+    
+    .contact-text a:hover {
+        color: var(--secondary);
+    }
+    
+    .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+    }
+    
+    .social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(201, 173, 106, 0.1);
+        color: var(--secondary);
+        transition: var(--transition);
+    }
+    
+    .social-link:hover {
+        background-color: var(--secondary);
+        color: var(--dark);
+        transform: translateY(-5px);
+    }
+    
+    .map-wrapper {
+        height: 100%;
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .map-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(26, 41, 66, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        transition: var(--transition);
+        cursor: pointer;
+    }
+    
+    .map-overlay p {
+        color: var(--light);
+        font-weight: 500;
+        padding: 15px 30px;
+        border: 2px solid var(--secondary);
+        border-radius: 4px;
+        background-color: rgba(26, 41, 66, 0.8);
+    }
+    
+    .map-overlay:hover {
+        opacity: 0;
+    }
+    
+    /* Estilos para o Footer */
+    .footer {
+        background-color: var(--primary-dark);
+        color: var(--light);
+        padding: 60px 0 30px;
+    }
+    
+    .footer-top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .footer-logo {
+        margin-bottom: 20px;
+    }
+    
+    .footer-logo img {
+        height: 80px;
+        width: auto;
+    }
+    
+    .footer-tagline {
+        max-width: 600px;
+        font-size: 1.1rem;
+        color: var(--grey-light);
+        line-height: 1.6;
+    }
+    
+    .footer-separator {
+        height: 1px;
+        background-color: rgba(201, 173, 106, 0.2);
+        margin: 30px 0;
+    }
+    
+    .footer-columns {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+    
+    .footer-column h3 {
+        font-size: 1.2rem;
+        color: var(--light);
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        position: relative;
+    }
+    
+    .footer-column h3:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--secondary);
+    }
+    
+    .footer-column address {
+        font-style: normal;
+        color: var(--grey-mid);
+        line-height: 1.8;
+    }
+    
+    .footer-column address div {
+        margin-bottom: 10px;
+    }
+    
+    .footer-column address a {
+        color: var(--secondary);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+    
+    .footer-column address a:hover {
+        color: #d8c089;
+    }
+    
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        columns: 2;
+        column-gap: 20px;
+    }
+    
+    .footer-links li {
+        margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+        color: var(--grey-mid);
+        text-decoration: none;
+        transition: var(--transition);
+        position: relative;
+        padding-left: 15px;
+    }
+    
+    .footer-links a:before {
+        content: '›';
+        position: absolute;
+        left: 0;
+        color: var(--secondary);
+        font-size: 1.2rem;
+        line-height: 1;
+    }
+    
+    .footer-links a:hover {
+        color: var(--light);
+    }
+    
+    .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    .footer-bottom p {
+        color: var(--grey-mid);
+        font-size: 0.9rem;
+    }
+    
+    .footer-legal-links {
+        display: flex;
+        gap: 20px;
+    }
+    
+    .footer-legal-links a {
+        color: var(--grey-mid);
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+    
+    .footer-legal-links a:hover {
+        color: var(--light);
+    }
+    
+    /* Estilo para o botão WhatsApp flutuante */
+    .whatsapp-float {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #25D366;
+        color: white;
+        border-radius: 50px;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        z-index: 1000;
+        transition: var(--transition);
+    }
+    
+    .whatsapp-float:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    }
+    
+    @media (max-width: 992px) {
+        .contact-wrapper {
+            grid-template-columns: 1fr;
+        }
+        
+        .map-wrapper {
+            height: 400px;
+        }
+        
+        .footer-columns {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+    }
+</style>
+
+<script>
+    // Script para a interação do mapa
+    document.addEventListener('DOMContentLoaded', function() {
+        const mapOverlay = document.querySelector('.map-overlay');
+        
+        mapOverlay.addEventListener('click', function() {
+            this.style.opacity = '0';
+            setTimeout(() => {
+                this.style.display = 'none';
+            }, 600);
+        });
+    });
+    
+    // Script para efeito de scroll suave nos links de navegação
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80, // Ajuste para o cabeçalho fixo
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Script para efeito de rolagem no cabeçalho
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.header');
+        
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>
