@@ -211,6 +211,15 @@
             background: none;
             border: none;
             flex-shrink: 0;
+            position: relative;
+        }
+        
+        .hamburger:focus {
+            outline: none;
+        }
+        
+        .hamburger:hover {
+            opacity: 0.8;
         }
         
         .hamburger span {
@@ -225,6 +234,7 @@
         
         .hamburger.active span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
+            background-color: #F5F5F5 !important;
         }
         
         .hamburger.active span:nth-child(2) {
@@ -233,6 +243,7 @@
         
         .hamburger.active span:nth-child(3) {
             transform: rotate(-45deg) translate(7px, -6px);
+            background-color: #F5F5F5 !important;
         }
         
         /* Menu Mobile */
@@ -303,6 +314,16 @@
             
             .hamburger {
                 display: flex;
+            }
+            
+            .hamburger span {
+                background-color: #FFFFFF !important;
+                box-shadow: 0 0 1px rgba(0,0,0,0.1);
+            }
+            
+            .hamburger.active span:nth-child(1),
+            .hamburger.active span:nth-child(3) {
+                background-color: #FFFFFF !important;
             }
             
             .mobile-menu {
@@ -667,7 +688,38 @@
             
             .service-card {
                 height: auto;
-                min-height: 450px;
+                min-height: auto;
+                margin-bottom: 20px;
+            }
+            
+            /* Mobile específico para service cards */
+            .service-front {
+                display: block;
+            }
+            
+            .service-back {
+                display: block !important;
+                position: relative !important;
+                transform: none !important;
+                border-radius: 0 0 8px 8px;
+                border-top: 2px solid var(--secondary);
+                margin-top: 0;
+            }
+            
+            .service-back h3 {
+                font-size: 1.3rem;
+                margin-bottom: 20px;
+            }
+            
+            .service-back h4 {
+                font-size: 1.1rem;
+                margin: 20px 0 10px;
+            }
+            
+            .service-back-content {
+                padding: 25px;
+                height: auto;
+                overflow: visible;
             }
             
             .testimonial-card {
@@ -1175,6 +1227,51 @@
             .services-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
+            }
+            
+            /* Desabilitar flip cards em mobile para melhor performance */
+            .service-card {
+                perspective: none;
+                height: auto;
+                min-height: auto;
+            }
+            
+            .service-front, 
+            .service-back {
+                position: relative;
+                transform: none !important;
+                backface-visibility: visible;
+                transition: none;
+            }
+            
+            .service-back {
+                display: block;
+                padding: 30px;
+                margin-top: 0;
+                border-top: 2px solid var(--secondary);
+            }
+            
+            .service-card.flipped .service-front,
+            .service-card.flipped .service-back {
+                transform: none !important;
+            }
+            
+            /* Esconder botões de expansão em mobile */
+            .service-expand-btn,
+            .service-back-btn {
+                display: none;
+            }
+            
+            /* Ajustar altura do card back content */
+            .service-back-content {
+                height: auto;
+                overflow-y: visible;
+                padding: 0;
+            }
+            
+            /* Reorganizar conteúdo para mobile */
+            .service-front {
+                margin-bottom: 0;
             }
         }
 
