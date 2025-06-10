@@ -687,39 +687,87 @@
             }
             
             .service-card {
-                height: auto;
-                min-height: auto;
+                height: auto !important;
+                min-height: auto !important;
                 margin-bottom: 20px;
+                display: block !important;
             }
             
             /* Mobile específico para service cards */
             .service-front {
-                display: block;
+                display: block !important;
+                position: static !important;
+                transform: none !important;
             }
             
             .service-back {
                 display: block !important;
-                position: relative !important;
+                position: static !important;
                 transform: none !important;
                 border-radius: 0 0 8px 8px;
                 border-top: 2px solid var(--secondary);
                 margin-top: 0;
+                background-color: var(--primary-dark);
+                border: 1px solid rgba(201, 173, 106, 0.2);
+                border-top: 2px solid var(--secondary);
             }
             
             .service-back h3 {
-                font-size: 1.3rem;
-                margin-bottom: 20px;
+                font-size: 1.3rem !important;
+                margin-bottom: 20px !important;
+                display: block !important;
+                color: var(--light) !important;
             }
             
             .service-back h4 {
-                font-size: 1.1rem;
-                margin: 20px 0 10px;
+                font-size: 1.1rem !important;
+                margin: 20px 0 10px !important;
+                display: block !important;
+                color: var(--secondary) !important;
+            }
+            
+            .service-back p {
+                display: block !important;
+                color: var(--grey-light) !important;
+                line-height: 1.7 !important;
+                margin-bottom: 20px !important;
+            }
+            
+            .service-back ul {
+                display: block !important;
+                list-style-type: none !important;
+                padding-left: 5px !important;
+                margin-bottom: 25px !important;
+            }
+            
+            .service-back li {
+                display: block !important;
+                margin-bottom: 15px !important;
+                color: var(--grey-mid) !important;
+                position: relative !important;
+                padding-left: 25px !important;
+            }
+            
+            .service-back li:before {
+                content: '•' !important;
+                color: var(--secondary) !important;
+                position: absolute !important;
+                left: 0 !important;
+                font-size: 1.5rem !important;
+                line-height: 1 !important;
+                opacity: 0.8 !important;
+            }
+            
+            .service-back li strong {
+                color: var(--light) !important;
+                font-weight: 600 !important;
             }
             
             .service-back-content {
-                padding: 25px;
-                height: auto;
-                overflow: visible;
+                padding: 25px !important;
+                height: auto !important;
+                overflow: visible !important;
+                display: block !important;
             }
             
             .testimonial-card {
@@ -1234,44 +1282,63 @@
                 perspective: none;
                 height: auto;
                 min-height: auto;
+                display: block;
             }
             
             .service-front, 
             .service-back {
-                position: relative;
+                position: static !important;
                 transform: none !important;
-                backface-visibility: visible;
+                backface-visibility: visible !important;
                 transition: none;
+                width: 100%;
+                height: auto;
+                display: block !important;
             }
             
             .service-back {
-                display: block;
-                padding: 30px;
-                margin-top: 0;
+                background-color: var(--primary-dark);
+                border: 1px solid rgba(201, 173, 106, 0.2);
                 border-top: 2px solid var(--secondary);
+                border-radius: 0 0 8px 8px;
+                margin-top: 0;
+                padding: 0;
+            }
+            
+            .service-front {
+                border-radius: 8px 8px 0 0;
+                margin-bottom: 0;
             }
             
             .service-card.flipped .service-front,
             .service-card.flipped .service-back {
                 transform: none !important;
+                position: static !important;
+                display: block !important;
             }
             
             /* Esconder botões de expansão em mobile */
             .service-expand-btn,
             .service-back-btn {
-                display: none;
+                display: none !important;
             }
             
-            /* Ajustar altura do card back content */
+            /* Forçar exibição do conteúdo back */
             .service-back-content {
-                height: auto;
-                overflow-y: visible;
-                padding: 0;
+                height: auto !important;
+                overflow-y: visible !important;
+                padding: 30px !important;
+                display: block !important;
             }
             
-            /* Reorganizar conteúdo para mobile */
-            .service-front {
-                margin-bottom: 0;
+            .service-back h3,
+            .service-back h4,
+            .service-back p,
+            .service-back ul,
+            .service-back li {
+                display: block !important;
+                opacity: 1 !important;
+                visibility: visible !important;
             }
         }
 
@@ -1834,7 +1901,7 @@
             }
         }
         
-        /* Melhorias para touch devices */
+        /* Melhorias para touch devices - Desabilitar animações pesadas */
         @media (hover: none) and (pointer: coarse) {
             .service-card:hover .service-image {
                 transform: scale(1);
@@ -1852,6 +1919,47 @@
                 transform: translateY(0);
             }
             
+            /* Forçar exibição de conteúdo em touch devices */
+            .service-card {
+                perspective: none !important;
+                height: auto !important;
+                display: block !important;
+            }
+            
+            .service-front, 
+            .service-back {
+                transform: none !important;
+                position: static !important;
+                backface-visibility: visible !important;
+                display: block !important;
+                width: 100% !important;
+                height: auto !important;
+            }
+            
+            .service-back {
+                background-color: var(--primary-dark) !important;
+                border: 1px solid rgba(201, 173, 106, 0.2) !important;
+                border-top: 2px solid var(--secondary) !important;
+                padding: 0 !important;
+            }
+            
+            .service-back-content {
+                display: block !important;
+                padding: 25px !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+            
+            .service-back-content h3,
+            .service-back-content h4,
+            .service-back-content p,
+            .service-back-content ul,
+            .service-back-content li {
+                display: block !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+            
             /* Reduzir animações em dispositivos móveis para melhor performance */
             .animate-on-scroll {
                 transition: all 0.4s ease;
@@ -1862,6 +1970,10 @@
             }
             
             .step-card.is-visible .step-icon {
+                animation: none;
+            }
+            
+            .service-card.is-visible .service-number {
                 animation: none;
             }
         }
@@ -2935,26 +3047,40 @@
 
     // Script para a interação dos cards de serviços
     document.addEventListener('DOMContentLoaded', function() {
-        // Botões para expandir os cards
-        const expandButtons = document.querySelectorAll('.service-expand-btn');
-        
-        expandButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const serviceId = this.getAttribute('data-service');
-                const card = document.getElementById(`service-${serviceId}`);
-                card.classList.add('flipped');
+        // Só ativar flip cards no desktop
+        if (window.innerWidth > 992) {
+            // Botões para expandir os cards
+            const expandButtons = document.querySelectorAll('.service-expand-btn');
+            
+            expandButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const serviceId = this.getAttribute('data-service');
+                    const card = document.getElementById(`service-${serviceId}`);
+                    card.classList.add('flipped');
+                });
             });
-        });
-        
-        // Botões para voltar
-        const backButtons = document.querySelectorAll('.service-back-btn');
-        
-        backButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const serviceId = this.getAttribute('data-service');
-                const card = document.getElementById(`service-${serviceId}`);
-                card.classList.remove('flipped');
+            
+            // Botões para voltar
+            const backButtons = document.querySelectorAll('.service-back-btn');
+            
+            backButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const serviceId = this.getAttribute('data-service');
+                    const card = document.getElementById(`service-${serviceId}`);
+                    card.classList.remove('flipped');
+                });
             });
+        }
+        
+        // Listener para redimensionamento da tela
+        window.addEventListener('resize', function() {
+            // Se mudou para mobile, remover todas as classes de flip
+            if (window.innerWidth <= 992) {
+                const flippedCards = document.querySelectorAll('.service-card.flipped');
+                flippedCards.forEach(card => {
+                    card.classList.remove('flipped');
+                });
+            }
         });
     });
 
@@ -3161,12 +3287,28 @@
                 background-attachment: scroll !important;
             }
             
+            .service-card {
+                perspective: none !important;
+                height: auto !important;
+            }
+            
+            .service-front, .service-back {
+                transform: none !important;
+                position: relative !important;
+                backface-visibility: visible !important;
+            }
+            
+            .service-back {
+                display: block !important;
+            }
+            
             @keyframes iconFloating,
             @keyframes iconBounce,
             @keyframes quoteFloat,
             @keyframes starGlow,
             @keyframes iconWave,
-            @keyframes whatsappPulse {
+            @keyframes whatsappPulse,
+            @keyframes numberPulse {
                 0%, 100% { transform: none; }
             }
         `;
