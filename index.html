@@ -698,6 +698,7 @@
                 display: block !important;
                 position: static !important;
                 transform: none !important;
+                border-radius: 8px 8px 0 0;
             }
             
             .service-back {
@@ -705,47 +706,55 @@
                 position: static !important;
                 transform: none !important;
                 border-radius: 0 0 8px 8px;
-                border-top: 2px solid var(--secondary);
-                margin-top: 0;
+                border-top: none; /* Sem linha dourada */
+                margin-top: -15px; /* Aproximar mais */
                 background-color: var(--primary-dark);
                 border: 1px solid rgba(201, 173, 106, 0.2);
-                border-top: 2px solid var(--secondary);
+                border-top: none;
             }
             
+            /* Remover título duplicado */
             .service-back h3 {
-                font-size: 1.3rem !important;
-                margin-bottom: 20px !important;
-                display: block !important;
-                color: var(--light) !important;
+                display: none !important;
             }
             
             .service-back h4 {
-                font-size: 1.1rem !important;
-                margin: 20px 0 10px !important;
+                font-size: 1.15rem !important;
+                margin: 10px 0 8px !important;
                 display: block !important;
                 color: var(--secondary) !important;
+            }
+            
+            /* Melhorar primeiro parágrafo */
+            .service-back-content > p:first-child {
+                margin-top: 0 !important;
+                margin-bottom: 15px !important;
+                font-size: 1.05rem !important;
+                color: var(--grey-light) !important;
+                line-height: 1.6 !important;
             }
             
             .service-back p {
                 display: block !important;
                 color: var(--grey-light) !important;
                 line-height: 1.7 !important;
-                margin-bottom: 20px !important;
+                margin-bottom: 12px !important;
             }
             
             .service-back ul {
                 display: block !important;
                 list-style-type: none !important;
                 padding-left: 5px !important;
-                margin-bottom: 25px !important;
+                margin-bottom: 15px !important;
             }
             
             .service-back li {
                 display: block !important;
-                margin-bottom: 15px !important;
+                margin-bottom: 10px !important;
                 color: var(--grey-mid) !important;
                 position: relative !important;
                 padding-left: 25px !important;
+                font-size: 0.95rem !important;
             }
             
             .service-back li:before {
@@ -764,10 +773,16 @@
             }
             
             .service-back-content {
-                padding: 25px !important;
+                padding: 15px 20px 15px 20px !important; /* Padding reduzido */
                 height: auto !important;
                 overflow: visible !important;
                 display: block !important;
+            }
+            
+            /* Último parágrafo */
+            .service-back-content > p:last-of-type {
+                margin-bottom: 0 !important;
+                padding-bottom: 0 !important;
             }
             
             .testimonial-card {
@@ -1299,15 +1314,28 @@
             .service-back {
                 background-color: var(--primary-dark);
                 border: 1px solid rgba(201, 173, 106, 0.2);
-                border-top: 2px solid var(--secondary);
+                border-top: none; /* Remover linha dourada */
                 border-radius: 0 0 8px 8px;
-                margin-top: 0;
+                margin-top: -15px; /* Aproximar mais as seções */
                 padding: 0;
             }
             
             .service-front {
                 border-radius: 8px 8px 0 0;
                 margin-bottom: 0;
+            }
+            
+            /* Esconder o título duplicado da seção back */
+            .service-back h3 {
+                display: none !important;
+            }
+            
+            /* Ajustar primeiro parágrafo para substituir o título */
+            .service-back-content > p:first-child {
+                margin-top: 0 !important;
+                margin-bottom: 20px !important;
+                font-size: 1.05rem !important;
+                color: var(--grey-light) !important;
             }
             
             .service-card.flipped .service-front,
@@ -1327,11 +1355,10 @@
             .service-back-content {
                 height: auto !important;
                 overflow-y: visible !important;
-                padding: 30px !important;
+                padding: 15px 25px 20px 25px !important; /* Reduzir padding superior */
                 display: block !important;
             }
             
-            .service-back h3,
             .service-back h4,
             .service-back p,
             .service-back ul,
@@ -1939,18 +1966,23 @@
             .service-back {
                 background-color: var(--primary-dark) !important;
                 border: 1px solid rgba(201, 173, 106, 0.2) !important;
-                border-top: 2px solid var(--secondary) !important;
+                border-top: none !important; /* Sem linha dourada */
                 padding: 0 !important;
+                margin-top: -15px !important; /* Aproximar mais */
+            }
+            
+            /* Remover título duplicado em touch devices */
+            .service-back h3 {
+                display: none !important;
             }
             
             .service-back-content {
                 display: block !important;
-                padding: 25px !important;
+                padding: 15px 20px !important; /* Padding reduzido */
                 height: auto !important;
                 overflow: visible !important;
             }
             
-            .service-back-content h3,
             .service-back-content h4,
             .service-back-content p,
             .service-back-content ul,
@@ -3047,40 +3079,97 @@
 
     // Script para a interação dos cards de serviços
     document.addEventListener('DOMContentLoaded', function() {
-        // Só ativar flip cards no desktop
-        if (window.innerWidth > 992) {
-            // Botões para expandir os cards
-            const expandButtons = document.querySelectorAll('.service-expand-btn');
-            
-            expandButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const serviceId = this.getAttribute('data-service');
-                    const card = document.getElementById(`service-${serviceId}`);
-                    card.classList.add('flipped');
-                });
-            });
-            
-            // Botões para voltar
-            const backButtons = document.querySelectorAll('.service-back-btn');
-            
-            backButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const serviceId = this.getAttribute('data-service');
-                    const card = document.getElementById(`service-${serviceId}`);
-                    card.classList.remove('flipped');
-                });
-            });
-        }
         
-        // Listener para redimensionamento da tela
-        window.addEventListener('resize', function() {
-            // Se mudou para mobile, remover todas as classes de flip
-            if (window.innerWidth <= 992) {
-                const flippedCards = document.querySelectorAll('.service-card.flipped');
-                flippedCards.forEach(card => {
+        function setupServiceCards() {
+            const isMobile = window.innerWidth <= 992;
+            
+            if (isMobile) {
+                // Em mobile: forçar exibição de todo conteúdo
+                const serviceCards = document.querySelectorAll('.service-card');
+                serviceCards.forEach(card => {
+                    const front = card.querySelector('.service-front');
+                    const back = card.querySelector('.service-back');
+                    const backContent = card.querySelector('.service-back-content');
+                    const backTitle = back?.querySelector('h3');
+                    
+                    // Remover todas as classes de flip
                     card.classList.remove('flipped');
+                    
+                    // Forçar estilos para mobile
+                    if (front) {
+                        front.style.display = 'block';
+                        front.style.position = 'static';
+                        front.style.transform = 'none';
+                    }
+                    
+                    if (back) {
+                        back.style.display = 'block';
+                        back.style.position = 'static';
+                        back.style.transform = 'none';
+                        back.style.opacity = '1';
+                        back.style.visibility = 'visible';
+                        back.style.marginTop = '-8px'; // Conectar melhor
+                    }
+                    
+                    // Esconder título duplicado
+                    if (backTitle) {
+                        backTitle.style.display = 'none';
+                    }
+                    
+                    if (backContent) {
+                        backContent.style.display = 'block';
+                        backContent.style.height = 'auto';
+                        backContent.style.overflow = 'visible';
+                        backContent.style.opacity = '1';
+                        backContent.style.visibility = 'visible';
+                        backContent.style.padding = '20px';
+                    }
+                });
+                
+                // Esconder botões em mobile
+                const expandBtns = document.querySelectorAll('.service-expand-btn, .service-back-btn');
+                expandBtns.forEach(btn => {
+                    btn.style.display = 'none';
+                });
+                
+            } else {
+                // Desktop: ativar flip cards e mostrar títulos
+                const serviceCards = document.querySelectorAll('.service-card');
+                serviceCards.forEach(card => {
+                    const backTitle = card.querySelector('.service-back h3');
+                    if (backTitle) {
+                        backTitle.style.display = 'block'; // Mostrar título no desktop
+                    }
+                });
+                
+                const expandButtons = document.querySelectorAll('.service-expand-btn');
+                
+                expandButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const serviceId = this.getAttribute('data-service');
+                        const card = document.getElementById(`service-${serviceId}`);
+                        card.classList.add('flipped');
+                    });
+                });
+                
+                const backButtons = document.querySelectorAll('.service-back-btn');
+                
+                backButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const serviceId = this.getAttribute('data-service');
+                        const card = document.getElementById(`service-${serviceId}`);
+                        card.classList.remove('flipped');
+                    });
                 });
             }
+        }
+        
+        // Configurar cards na carga
+        setupServiceCards();
+        
+        // Reconfigurar ao redimensionar
+        window.addEventListener('resize', function() {
+            setupServiceCards();
         });
     });
 
