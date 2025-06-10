@@ -701,13 +701,18 @@
                 border-radius: 8px 8px 0 0;
             }
             
+            /* Reduzir padding da parte front */
+            .service-content {
+                padding-bottom: 10px !important;
+            }
+            
             .service-back {
                 display: block !important;
                 position: static !important;
                 transform: none !important;
                 border-radius: 0 0 8px 8px;
                 border-top: none; /* Sem linha dourada */
-                margin-top: -15px; /* Aproximar mais */
+                margin-top: -30px; /* Aproximar muito mais */
                 background-color: var(--primary-dark);
                 border: 1px solid rgba(201, 173, 106, 0.2);
                 border-top: none;
@@ -720,7 +725,7 @@
             
             .service-back h4 {
                 font-size: 1.15rem !important;
-                margin: 10px 0 8px !important;
+                margin: 8px 0 6px !important;
                 display: block !important;
                 color: var(--secondary) !important;
             }
@@ -728,7 +733,7 @@
             /* Melhorar primeiro parágrafo */
             .service-back-content > p:first-child {
                 margin-top: 0 !important;
-                margin-bottom: 15px !important;
+                margin-bottom: 12px !important;
                 font-size: 1.05rem !important;
                 color: var(--grey-light) !important;
                 line-height: 1.6 !important;
@@ -738,19 +743,19 @@
                 display: block !important;
                 color: var(--grey-light) !important;
                 line-height: 1.7 !important;
-                margin-bottom: 12px !important;
+                margin-bottom: 10px !important;
             }
             
             .service-back ul {
                 display: block !important;
                 list-style-type: none !important;
                 padding-left: 5px !important;
-                margin-bottom: 15px !important;
+                margin-bottom: 12px !important;
             }
             
             .service-back li {
                 display: block !important;
-                margin-bottom: 10px !important;
+                margin-bottom: 8px !important;
                 color: var(--grey-mid) !important;
                 position: relative !important;
                 padding-left: 25px !important;
@@ -773,7 +778,7 @@
             }
             
             .service-back-content {
-                padding: 15px 20px 15px 20px !important; /* Padding reduzido */
+                padding: 8px 20px 12px 20px !important; /* Padding muito reduzido */
                 height: auto !important;
                 overflow: visible !important;
                 display: block !important;
@@ -1311,18 +1316,23 @@
                 display: block !important;
             }
             
+            .service-front {
+                border-radius: 8px 8px 0 0;
+                margin-bottom: 0;
+            }
+            
+            /* Reduzir padding inferior da parte front */
+            .service-content {
+                padding-bottom: 15px !important;
+            }
+            
             .service-back {
                 background-color: var(--primary-dark);
                 border: 1px solid rgba(201, 173, 106, 0.2);
                 border-top: none; /* Remover linha dourada */
                 border-radius: 0 0 8px 8px;
-                margin-top: -15px; /* Aproximar mais as seções */
+                margin-top: -25px; /* Aproximar muito mais */
                 padding: 0;
-            }
-            
-            .service-front {
-                border-radius: 8px 8px 0 0;
-                margin-bottom: 0;
             }
             
             /* Esconder o título duplicado da seção back */
@@ -1333,7 +1343,7 @@
             /* Ajustar primeiro parágrafo para substituir o título */
             .service-back-content > p:first-child {
                 margin-top: 0 !important;
-                margin-bottom: 20px !important;
+                margin-bottom: 15px !important;
                 font-size: 1.05rem !important;
                 color: var(--grey-light) !important;
             }
@@ -1355,7 +1365,7 @@
             .service-back-content {
                 height: auto !important;
                 overflow-y: visible !important;
-                padding: 15px 25px 20px 25px !important; /* Reduzir padding superior */
+                padding: 10px 25px 15px 25px !important; /* Padding muito reduzido */
                 display: block !important;
             }
             
@@ -1963,12 +1973,17 @@
                 height: auto !important;
             }
             
+            /* Reduzir padding da parte front */
+            .service-content {
+                padding-bottom: 10px !important;
+            }
+            
             .service-back {
                 background-color: var(--primary-dark) !important;
                 border: 1px solid rgba(201, 173, 106, 0.2) !important;
                 border-top: none !important; /* Sem linha dourada */
                 padding: 0 !important;
-                margin-top: -15px !important; /* Aproximar mais */
+                margin-top: -30px !important; /* Aproximar muito mais */
             }
             
             /* Remover título duplicado em touch devices */
@@ -1978,7 +1993,7 @@
             
             .service-back-content {
                 display: block !important;
-                padding: 15px 20px !important; /* Padding reduzido */
+                padding: 8px 20px 12px 20px !important; /* Padding muito reduzido */
                 height: auto !important;
                 overflow: visible !important;
             }
@@ -3091,6 +3106,7 @@
                     const back = card.querySelector('.service-back');
                     const backContent = card.querySelector('.service-back-content');
                     const backTitle = back?.querySelector('h3');
+                    const frontContent = card.querySelector('.service-content');
                     
                     // Remover todas as classes de flip
                     card.classList.remove('flipped');
@@ -3102,13 +3118,19 @@
                         front.style.transform = 'none';
                     }
                     
+                    // Reduzir padding da parte front
+                    if (frontContent) {
+                        frontContent.style.paddingBottom = '10px';
+                    }
+                    
                     if (back) {
                         back.style.display = 'block';
                         back.style.position = 'static';
                         back.style.transform = 'none';
                         back.style.opacity = '1';
                         back.style.visibility = 'visible';
-                        back.style.marginTop = '-8px'; // Conectar melhor
+                        back.style.marginTop = window.innerWidth <= 768 ? '-30px' : '-25px'; // Diferente por tamanho
+                        back.style.borderTop = 'none'; // Remover linha dourada
                     }
                     
                     // Esconder título duplicado
@@ -3122,7 +3144,7 @@
                         backContent.style.overflow = 'visible';
                         backContent.style.opacity = '1';
                         backContent.style.visibility = 'visible';
-                        backContent.style.padding = '20px';
+                        backContent.style.padding = window.innerWidth <= 768 ? '8px 20px 12px 20px' : '10px 25px 15px 25px';
                     }
                 });
                 
@@ -3137,8 +3159,17 @@
                 const serviceCards = document.querySelectorAll('.service-card');
                 serviceCards.forEach(card => {
                     const backTitle = card.querySelector('.service-back h3');
+                    const back = card.querySelector('.service-back');
+                    const frontContent = card.querySelector('.service-content');
+                    
                     if (backTitle) {
                         backTitle.style.display = 'block'; // Mostrar título no desktop
+                    }
+                    if (back) {
+                        back.style.borderTop = '2px solid var(--secondary)'; // Restaurar linha no desktop
+                    }
+                    if (frontContent) {
+                        frontContent.style.paddingBottom = ''; // Restaurar padding original
                     }
                 });
                 
