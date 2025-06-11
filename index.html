@@ -4,7 +4,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shekinah Assessoria Contábil</title>
+    <title>Shekinah Soluções Contábeis</title>
     <!-- Fontes premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,10 +116,10 @@
         .animate-cascade .animate-on-scroll:nth-child(5) { transition-delay: 0.5s; }
         .animate-cascade .animate-on-scroll:nth-child(6) { transition-delay: 0.6s; }
         
-        /* Header estilizado */
+        /* Header estilizado - Semi-transparente */
         .header {
-            background-color: rgba(26, 41, 66, 0.95);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            background-color: rgba(26, 41, 66, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             position: fixed;
             width: 100%;
             top: 0;
@@ -127,32 +127,27 @@
             z-index: 1000;
             padding: 10px 0;
             transition: var(--transition);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
         }
         
         .header.scrolled {
             padding: 5px 0;
-            background-color: rgba(26, 41, 66, 0.98);
+            background-color: rgba(26, 41, 66, 0.5);
+            backdrop-filter: blur(25px);
+        }
+        
+        @media (max-width: 992px) {
+            .header.scrolled {
+                padding: 8px 0;
+            }
         }
         
         .nav {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 5px 0;
             position: relative;
-        }
-        
-        .logo {
-            flex-shrink: 0;
-            z-index: 1001;
-        }
-        
-        .logo img {
-            height: 60px;
-            width: auto;
-            display: block;
-            transition: var(--transition);
         }
         
         .menu {
@@ -211,7 +206,8 @@
             background: none;
             border: none;
             flex-shrink: 0;
-            position: relative;
+            position: absolute;
+            right: 20px;
         }
         
         .hamburger:focus {
@@ -299,13 +295,10 @@
         /* Responsividade do header */
         @media (max-width: 992px) {
             .nav {
-                justify-content: space-between;
+                justify-content: center;
                 align-items: center;
                 padding: 5px 0;
-            }
-            
-            .logo {
-                /* Mantém propriedades do flexbox */
+                position: relative;
             }
             
             .menu {
@@ -331,15 +324,11 @@
             }
             
             .header {
-                padding: 8px 0;
+                padding: 12px 0;
             }
         }
         
         @media (max-width: 576px) {
-            .logo img {
-                height: 50px;
-            }
-            
             .container {
                 padding: 0 20px;
             }
@@ -348,7 +337,7 @@
         /* Seção Hero aprimorada */
         .hero {
             background: linear-gradient(rgba(26, 41, 66, 0.8), rgba(26, 41, 66, 0.9)), 
-                url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') 
+                url('inicial.png') 
                 no-repeat center center/cover;
             color: white;
             text-align: center;
@@ -363,6 +352,38 @@
             padding: 0;
             background-attachment: fixed;
             z-index: 1;
+        }
+        
+        /* Logo sobre a imagem inicial */
+        .hero-logo {
+            position: absolute;
+            top: 100px;
+            left: 140px;
+            z-index: 5;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: logoFadeIn 1.5s ease-out 0.5s forwards;
+        }
+        
+        .hero-logo img {
+            height: 312px;
+            width: auto;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            transition: var(--transition);
+        }
+        
+        .hero-logo img:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+        }
+        
+        @keyframes logoFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
         
         .hero h1 {
@@ -399,6 +420,19 @@
                 min-height: 100vh;
             }
             
+            .hero-logo {
+                top: 80px;
+                left: 100px;
+            }
+            
+            .hero-logo img {
+                height: 234px;
+            }
+            
+            .header {
+                padding: 12px 0;
+            }
+            
             .section:first-of-type {
                 padding-top: 100px;
             }
@@ -430,6 +464,24 @@
         }
         
         @media (max-width: 480px) {
+            .hero-logo {
+                top: 70px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .hero-logo img:hover {
+                transform: translateX(-50%) scale(1.05);
+            }
+            
+            .hero-logo img {
+                height: 195px;
+            }
+            
+            .header {
+                padding: 15px 0;
+            }
+            
             .hero h1 {
                 font-size: 2rem;
             }
@@ -437,6 +489,26 @@
             .hero p {
                 font-size: 1rem;
                 margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .hero-logo {
+                top: 60px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .hero-logo img:hover {
+                transform: translateX(-50%) scale(1.05);
+            }
+            
+            .hero-logo img {
+                height: 156px;
+            }
+            
+            .header {
+                padding: 18px 0;
             }
         }
         
@@ -682,6 +754,10 @@
                 font-size: 2rem;
             }
             
+            .footer-logo img {
+                height: 200px; /* Ajuste para tablets */
+            }
+            
             .step-card {
                 padding: 25px;
             }
@@ -804,6 +880,10 @@
                 flex-direction: column;
                 align-items: center;
                 gap: 30px;
+            }
+            
+            .footer-logo img {
+                height: 180px; /* Ajuste para mobile */
             }
             
             .footer-bottom {
@@ -1776,7 +1856,7 @@
         }
         
         .footer-logo img {
-            height: 80px;
+            height: 240px;
             width: auto;
         }
         
@@ -2077,12 +2157,7 @@
 <div class="header">
     <div class="container">
         <div class="nav">
-            <!-- Logo da empresa -->
-            <div class="logo animate-on-scroll animate-fade-in">
-                <img src="Logo PNG.png" alt="Shekinah Assessoria Contábil">
-            </div>
-            
-            <!-- Menu de navegação para desktop -->
+            <!-- Menu de navegação centralizado -->
             <ul class="menu">
                 <li><a href="#inicio">Início</a></li>
                 <li><a href="#perfil">Sobre</a></li>
@@ -2116,10 +2191,15 @@
 
 <!-- Hero Section com design premium -->
 <div id="inicio" class="hero">
+    <!-- Logo no canto superior esquerdo -->
+    <div class="hero-logo">
+        <img src="Logo PNG.png" alt="Shekinah Soluções Contábeis">
+    </div>
+    
     <div class="container">
         <h1>
             <span>Shekinah</span> 
-            <span class="gradient-text">Assessoria Contábil</span>
+            <span class="gradient-text">Soluções Contábeis</span>
         </h1>
         
         <p>
@@ -2504,7 +2584,7 @@
                             <li><strong>Processos admissionais:</strong> Registro, documentação e integração de novos colaboradores</li>
                             <li><strong>Folha de pagamento:</strong> Cálculo preciso de salários, benefícios e encargos</li>
                             <li><strong>Férias e 13º salário:</strong> Programação e processamento conforme necessidades da empresa</li>
-                            <li><strong>Obrigações acessórias:</strong> CAGED, RAIS, DIRF, SEFIP e outras obrigações legais</li>
+                            <li><strong>Obrigações acessórias:</strong> eSocial, FGTS Digital e outras obrigações legais</li>
                             <li><strong>Processos demissionais:</strong> Cálculos rescisórios, documentação e homologações</li>
                         </ul>
                         
@@ -2901,7 +2981,7 @@
         <!-- Parte Superior com Logo e Frase -->
         <div class="footer-top animate-on-scroll animate-fade-in">
             <div class="footer-logo">
-                <img src="Logo PNG.png" alt="Shekinah Assessoria Contábil">
+                <img src="Logo PNG.png" alt="Shekinah Soluções Contábeis">
             </div>
             
             <p class="footer-tagline">
@@ -2957,7 +3037,7 @@
         
         <!-- Copyright e Links de Política -->
         <div class="footer-bottom animate-on-scroll animate-fade-in">
-            <p>&copy; 2025 Shekinah Assessoria Contábil. Todos os direitos reservados.</p>
+            <p>&copy; 2025 Shekinah Soluções Contábeis. Todos os direitos reservados.</p>
             <div class="footer-legal-links">
                 <a href="#">Termos de Uso</a>
                 <a href="#">Política de Privacidade</a>
