@@ -3025,9 +3025,9 @@
                 <ul class="footer-links">
                     <li><a href="#servicos">Legalização Empresarial</a></li>
                     <li><a href="#servicos">Contabilidade Completa</a></li>
-                    <li><a href="#servicos">Departamento Pessoal</a></li>
-                    <li><a href="#servicos">Consultoria Fiscal</a></li>
-                    <li><a href="#servicos">Declaração de IR</a></li>
+                    <li><a href="#servicos" data-service="departamento-pessoal">Departamento Pessoal</a></li>
+                    <li><a href="#servicos" data-service="consultoria-fiscal">Consultoria Fiscal</a></li>
+                    <li><a href="#servicos" data-service="declaracao-ir">Declaração de IR</a></li>
                 </ul>
             </div>
         </div>
@@ -3402,8 +3402,18 @@
                 
                 // Calcular posição com offset adequado para mobile/desktop
                 let extraOffset = 20;
-                if (window.innerWidth <= 768) {
-                    extraOffset = 30; // Mais espaço em mobile
+
+                // Verificar se é um link do footer para serviços específicos
+                const serviceAttribute = this.getAttribute('data-service');
+                if (serviceAttribute && target.id === 'servicos') {
+                    // Para serviços específicos do footer (cards 3 e 4), adicionar offset extra
+                    if (serviceAttribute === 'departamento-pessoal' || 
+                        serviceAttribute === 'consultoria-fiscal' || 
+                        serviceAttribute === 'declaracao-ir') {
+                        extraOffset = window.innerWidth <= 768 ? -1000 : -800; // Offset maior para mostrar segunda linha
+                    }
+                } else if (window.innerWidth <= 768) {
+                    extraOffset = 30; // Mais espaço em mobile normal
                 }
                 
                 const targetPosition = target.offsetTop - headerHeight - extraOffset;
